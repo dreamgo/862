@@ -10,7 +10,6 @@
 	
 	/*create table*/
 	$table_name=$_POST['tableName'];
-	echo $table_name."<br>";
 	//echo $colNum;
 	/*$insert_content="xx";*/
 	for($j=0;$j<$colNum;$j++){
@@ -39,14 +38,15 @@
 	}
 	$insert_content=rtrim($insert_content,',');
 	$query="CREATE TABLE ".$table_name."(".$insert_content.")";
-	echo $query;	
+//	echo $query;	
 	mysqli_query($dbc,$query)
 		or die("fail create table:Please check your input data!");
 	
 	/*insert data into table*/
-	$delimiter="\t";
-	$query2="LOAD DATA LOCAL INFILE '".$FileDestination."' into table ".$table_name;
-	echo $query2;
+	$delimiter=$_POST["delimiter"];
+//	echo $delimiter;
+	$query2="LOAD DATA LOCAL INFILE '".$FileDestination."' into table ".$table_name." IGNORE 1 LINES";
+//	echo $query2;
 	mysqli_query($dbc,$query2)
 		or die("**fail insert table**");
 ?>

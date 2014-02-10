@@ -10,15 +10,21 @@
 	else
 	{
 		echo "Upload data file successful!<br>";
-		echo "Stored in:".$_FILES["data_file"]["tmp_name"];				//	$file=$_FILES["data_file"]["tmp_name"];
 		if(!move_uploaded_file($_FILES["data_file"]["tmp_name"], $FileDestination))
-		echo "*move failed!*";
+			echo "*move failed!*";
 	}
 
 ?>
 <form action="insert.php" method="post">
-<lable for="tableName">Table name: </lable><input name="tableName" type="text">
-
+<label for="tableName">Table name: </label><input name="tableName" type="text">
+<label for="delimiter">Delimiter:</label>
+<select name="delimiter">
+<option value="\t">table \t</option>
+<option value="\|">pipe |</option>
+<option value="\:">colon :</option>
+<option value="\;">semicolon ;</option>
+<option value="\,">comma ,</option>
+</select>
 <table>
 	<tr>
 		<td>Name</td>
@@ -42,9 +48,9 @@ for($i=0;$i<$colNum;$i++){
 	echo "  <td>".$str[$i]."</td>\n";
 	echo "  <td>\n";
 	echo "	<select name=\"type".$i."\">\n";
-	echo "	<option value=\"INT\">INT</option>\";\n";
-	echo "	<option value=\"DOUBLE\">DOUBLE</option>\"\n";
 	echo "	<option value=\"VARCHAR\">VARCHAR</option>\";\n";
+	echo "	<option value=\"DOUBLE\">DOUBLE</option>\"\n";
+	echo "	<option value=\"INT\">INT</option>\";\n";
 	echo "	<option value=\"DATE\">DATE</option>\";\n";
 	echo "	<option value=\"CHAR\">CHAR</option>\";\n";
 	echo "	<option value=\"TEXT\">TEXT</option>\";\n";
