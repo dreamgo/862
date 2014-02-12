@@ -5,5 +5,5 @@
  $database = "hehe";
  $host = "localhost";
   
- $FileDestination = "/Users/ryanlee/Github/862/a2/ApplicationsTestFile.txt";
+ $FileDestination = "./ApplicationsTestFile.txt";
  ?>

@@ -49,11 +49,12 @@ for($i=0;$i<$colNum;$i++){
 	echo "  </td>\n";
 	echo "  </tr>\n";
 }
-
 echo "<p>Total column:".$colNum."</p>";
 fclose($handle);
 ?>
+
 </table>
+<input type="hidden" name="delimiter" value="<?php echo $delimiter?>">
 <input type="submit" name="insert" value="INSERT">
 </form>
 
