@@ -1,6 +1,14 @@
 <html>
-<body>
+<head>
+<script type=text/javascript>
+	function alertMessage(){
+		alert("Congratulation, Upload Successful!");
+		history.go(-2);
+	}
+</script>
+</head>
 
+<body>
 <?php
 	/*connect database*/
 	require('dbconnect.inc.php');
@@ -13,26 +21,27 @@
 		$str=explode("\t", $line);
 	}
 	else
-	{
-		$str=explode($delimiter, $line);
-	}	
-		$colNum=count($str);		
-		for($i=0;$i<$colNum;$i++){
-			$colName=$colName.$str[$i].",";
-		}
+		$str=explode($delimiter, $line);	
+	$colNum=count($str);		
+	for($i=0;$i<$colNum;$i++){
+		$colName=$colName.$str[$i].",";
+	}
+	
 	$colName=trim($colName,',');
-
 	
 	for($j=0;$j<$colNum;$j++){
 		$type=$_POST["type".$j];
 		$length=$_POST["length".$j];
 		$name=$str[$j];		
+		if($type=='DECIMAL')
+			$type=$type."(10,2)";
 		if($type=='VARCHAR')
 			$type=$type."(255)";
 		$insert_content=$insert_content.$name."	".$type.",";			
 	}
-		
+
 	$insert_content="ApplicationID INT AUTO_INCREMENT,".$insert_content."PRIMARY KEY (ApplicationId)";
+	
 
 	/*connect database*/	
 	$dbc=mysqli_connect($host,$user,$password,$database) 
@@ -51,7 +60,10 @@
 		or die("**fail insert table**");
 	$query3="update Application set ApplicationID=ApplicationID-1";
 	mysqli_query($dbc,$query3);
-	echo "Congratulation, Upload Successful!"
+	echo "<script type=\"text/javascript\"> alertMessage(); </script>";
+	
+	/*close database*/
+	mysqli_close($dbc);
 ?>
 
 
