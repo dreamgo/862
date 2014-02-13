@@ -48,8 +48,9 @@
 	/*connect database*/	
 	$dbc=mysqli_connect($host,$user,$password,$database) 
 		or die('fail connect database hehe');
-	$query="DROP TABLE IF EXISTS application";
-	mysqli_query($dbc,$query);
+	$query="DROP TABLE IF EXISTS Application";
+	mysqli_query($dbc,$query)
+		or die("fail drop table:please check connect of database.");
 	
 	/*create table*/
 	$query1="CREATE TABLE Application "."(".$insert_content.")";	
