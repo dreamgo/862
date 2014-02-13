@@ -7,6 +7,7 @@
 			alert("please select a valid file!");
 			return (false);
 		}
+		}
 </script>
 	
 <style type="text/css">

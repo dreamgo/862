@@ -22,16 +22,18 @@
 	}
 	else
 		$str=explode($delimiter, $line);	
-	$colNum=count($str);		
+	$colNum=count($str);
+	$colName='';		
 	for($i=0;$i<$colNum;$i++){
 		$colName=$colName.$str[$i].",";
 	}
 	
 	$colName=trim($colName,',');
-	
+	$insert_content='';
 	for($j=0;$j<$colNum;$j++){
 		$type=$_POST["type".$j];
-		$length=$_POST["length".$j];
+//		$length=$_POST["length".$j];
+		if(isset($_POST['length'.$j])){$length=$_POST['length'.$j];}
 		$name=$str[$j];		
 		if($type=='DECIMAL')
 			$type=$type."(10,2)";
